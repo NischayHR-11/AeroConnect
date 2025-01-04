@@ -303,6 +303,13 @@ app.post("/staff",isLoggedIn, async (req,res)=>{
     res.redirect("/flights");
 })
 
+app.get("/guidelines",(req,res)=>{
+    res.render("guidelines.ejs");
+})
+
+app.get("/about",(req,res)=>{
+    res.render("about.ejs");
+})
 
 
 app.get("/login",(req,res)=>{
