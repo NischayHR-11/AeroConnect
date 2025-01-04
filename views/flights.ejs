@@ -1,0 +1,86 @@
+<% layout("/boilerplate.ejs")%>
+<style>
+    /* Custom styling for ticket format */
+    .flight-ticket {
+        border: 2px solid black;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .flight-ticket h5 {
+        color: black;
+    }
+    .flight-details {
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+    }
+    .departure-arrival {
+        text-align: center;
+    }
+    .book-btn {
+        border-radius: 20px;
+    }
+    .icons i{
+        font-size:50px;
+    }
+</style>
+<body>
+    <!-- Flight Search Section -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Search Available Flights</h1>
+        <form class="row g-3 justify-content-center">
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Departure City" required>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Destination City" required>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control" required>
+            </div>
+            <div class="col-md-2 text-center">
+                <button class="btn btn-primary w-100" type="submit">Search Flights</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Available Flights Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Available Flights</h2>
+        
+        <% for(let x of flightsss) {%>
+        
+            <!-- Flight Ticket 1 -->
+        <a href="/<%= x._id %>" style="text-decoration: none;color: black;">
+
+            <div class="flight-ticket">
+                <div class="flight-details">
+                    <div class="icons">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <div>
+                        <h5><%= x.flightname %></h5>
+                        <p><%= x.aircraftModel%></p>
+                    </div>
+                    <div class="departure-arrival">
+                        <h5><%= x.arrival.from %> &nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp; <%= x.departures.destination %></h5>
+                        <p><strong>Departure:</strong> <%= x.departures.departureTime %> | <strong>Arrival:</strong> <%= x.arrival.arrivalTime %></p>
+                    </div>
+                    <div>
+                        <p><strong>Price:</strong>  $ <%= x.amount %> </p>
+                        <button class="btn btn-success book-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </a>
+
+
+        <% } %>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
