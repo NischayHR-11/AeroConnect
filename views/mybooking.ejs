@@ -1,0 +1,58 @@
+<% layout("/boilerplate.ejs")%>
+<style>
+    /* Custom styling for ticket format */
+    .flight-ticket {
+        border: 2px solid black;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .flight-ticket h5 {
+        color: black;
+    }
+    .flight-details {
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+    }
+    .departure-arrival {
+        text-align: center;
+    }
+    .book-btn {
+        border-radius: 20px;
+    }
+    .icons i{
+        font-size:50px;
+    }
+</style>
+<body>
+    <!-- Flight Search Section -->
+
+    <!-- Available Flights Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Booked Flights</h2>
+        
+        <% for (let x of curuser.bookings) { %>
+            <div class="flight-ticket">
+                <div class="flight-details">
+                    <div class="icons">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <div>
+                        <h5><%= x.flight_id?.flightname || 'N/A' %></h5>
+                        <p><%= x.flight_id?.aircraftModel || 'N/A' %></p>
+                    </div>
+                    <div class="departure-arrival">
+                        <h5><%= x.from %> &nbsp;<i class="fa-solid fa-arrow-right-long"></i>&nbsp; <%= x.destination %></h5>
+                        <p><strong>Departure:</strong> <%= x.departuretime %> | <strong>Arrival:</strong> <%= x.arrivaltime %></p>
+                    </div>
+                    <div>
+                        <p><strong>Price:</strong> $<%= x.flight_id.amount %></p>
+                        <button class="btn btn-success book-btn" >Booked</button>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+</body>
