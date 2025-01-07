@@ -6,14 +6,15 @@
             <h3>Add new Staff</h3>
     <form method="post" action="/staff" novalidate class="needs-validation">
         <br>
-        <div>
-            <label for="FlightName" class="form-label">Flight Name</label>
-            <input type="text" id="FlightName" placeholder="FLight Name" name="staff[FlightName]" class="form-control" required>
-            <div class="invalid-feedback">please enter a valid name</div>
-        </div>
         <div class="mt-3">
             <label for="fullname" class="form-label">Fullname</label>
             <input type="text" id="fullname" placeholder="fullname" name="staff[fullname]" class="form-control" required>
+            <div class="invalid-feedback">please enter a valid name</div>
+        </div>
+        <br>
+        <div>
+            <label for="FlightName" class="form-label">Flight Name</label>
+            <input type="text" id="FlightName" placeholder="FLight Name" name="staff[FlightName]" class="form-control" required>
             <div class="invalid-feedback">please enter a valid name</div>
         </div>
         <br>

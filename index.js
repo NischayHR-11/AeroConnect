@@ -185,7 +185,6 @@ app.post("/addFlight",isLoggedIn,async(req,res)=>{
     await newflight.save();
 
     const flightss= await flight.find();
-    console.log(flightss);
     const id= newflight._id;
     res.render("arrivals.ejs",{id});
 });
@@ -217,13 +216,7 @@ app.post("/:id/arrival",isLoggedIn,async(req,res)=>{
     await curflight.save();
 
      const flightss= await flight.find().populate("arrival");
-     console.log(flightss);
-
-
     const arrivalss= await arrival.find();
-    console.log(arrivalss);
-
-
     res.render("departure.ejs",{id});
 });
 
@@ -255,11 +248,7 @@ app.post("/:id/departure",isLoggedIn,async (req,res)=>{
     await curflight.save();
 
     const flightss = await flight.find().populate(["arrival", "departures"]);
-    console.log(flightss);
-
-
     const departuress= await departure.find();
-    console.log(departuress);
 
     res.redirect("/flights");
 });
@@ -272,7 +261,6 @@ app.get("/staff",isLoggedIn,(req,res)=>{
 app.post("/staff",isLoggedIn, async (req,res)=>{
     
     let{staff:curstaff}=req.body;
-    console.log(curstaff);
 
     const curflight= await flight.findOne({flightname:curstaff.FlightName}).populate(["arrival","departures","staffs"]);
     if (!curflight) {
@@ -297,9 +285,6 @@ app.post("/staff",isLoggedIn, async (req,res)=>{
     curflight.staffs.push( newstaff._id);
 
     await curflight.save();
-
-    console.log(newstaff);
-    console.log(curflight);
     res.redirect("/flights");
 })
 
@@ -417,13 +402,9 @@ app.post("/:id/booking",isLoggedIn,async (req,res)=>{
 
     let newuser=await curuser.save();
 
-
-    console.log(newuser);
-    console.log(curflight);
-
     // const newbooking=new 
 
-    res.redirect("/mybookings")
+    // res.redirect("/mybookings")
 
 });
 
